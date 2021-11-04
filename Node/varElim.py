@@ -1,3 +1,6 @@
+
+
+
 class varElim:
 
 
@@ -9,8 +12,7 @@ class varElim:
 
     def normalize(prob):
         return tuple(i * 1/(sum(prob)) for i in prob)
-    
-    
+
     # --------------------------------------------------------------------------------------------
     # The makeFactor function takes the currently selected variable, the factor variables for the 
     # selected variable, and the evidence provided. Returned will be a list of the variables as well
@@ -27,6 +29,13 @@ class varElim:
     # --------------------------------------------------------------------------------------------
     # The sumOut function takes in the selected variable and a list of the factors and returns a 
     # list of the summed out factors. 
-
     def sumOut(var, factors):
         pass
+
+    # --------------------------------------------------------------------------------------------
+    # The elimAsk function calculates the distribution over the query variable using variable 
+    # elimination. It takes the query variable and evidence and returns the distribution over the 
+    # query variable. 
+    def elimAsk(query, evid):
+        pass
+
