@@ -37,5 +37,12 @@ class varElim:
     # elimination. It takes the query variable and evidence and returns the distribution over the 
     # query variable. 
     def elimAsk(query, evid):
-        pass
+        # to keep track of those variables that have been eliminated
+        eliminated = set()
+        # initializing list for factors
+        factors = []
+
+
+        # filtering variables which have been eliminated
+        variables = filter()
 
