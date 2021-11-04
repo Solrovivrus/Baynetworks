@@ -36,7 +36,7 @@ class varElim:
     # The elimAsk function calculates the distribution over the query variable using variable 
     # elimination. It takes the query variable and evidence and returns the distribution over the 
     # query variable. 
-    def elimAsk(query, evid):
+    def elimAsk(query, evid, bn):
         # to keep track of those variables that have been eliminated
         eliminated = set()
         # initializing list for factors
@@ -44,5 +44,11 @@ class varElim:
 
 
         # filtering variables which have been eliminated
-        variables = filter()
+        # bn is the given bayesnet, not sure yet on how to bring it in
+        variables = filter(lambda k: k not in eliminated, list(bn))
+
+    # --------------------------------------------------------------------------------------------
+    # The query function takes in the bayes net to be used, evidence, and query variable
+    def query(bn, evid, query):
+        pass
 
