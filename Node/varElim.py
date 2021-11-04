@@ -9,3 +9,24 @@ class varElim:
 
     def normalize(prob):
         return tuple(i * 1/(sum(prob)) for i in prob)
+    
+    
+    # --------------------------------------------------------------------------------------------
+    # The makeFactor function takes the currently selected variable, the factor variables for the 
+    # selected variable, and the evidence provided. Returned will be a list of the variables as well
+    # as a dictionary containing the state and probability of the variables. 
+    def makeFactor(var, fvar, evid):
+        pass
+
+    # --------------------------------------------------------------------------------------------
+    # The pwProd function takes in the common variable and list of factors and returns a list of 
+    # new factors. 
+    def pwProd(var, factors):
+        pass
+
+    # --------------------------------------------------------------------------------------------
+    # The sumOut function takes in the selected variable and a list of the factors and returns a 
+    # list of the summed out factors. 
+
+    def sumOut(var, factors):
+        pass
