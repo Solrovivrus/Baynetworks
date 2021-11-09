@@ -3,15 +3,13 @@ from Node import Node
 import sys
 import re
 
-#f = open("alarm.bif","r")
-#BIF = f.readlines()
 class parser:
 
     @staticmethod
     def fixWhiteSpace(BIF_white):
         i=0
         while i<len(BIF_white):
-            if BIF_white[i] == "\n": #or a[i] == "}\n":
+            if BIF_white[i] == "\n":
                 #Remove whitespace lines
                 del BIF_white[i]
             else:
@@ -22,7 +20,6 @@ class parser:
                 #Get rid of white space at the beginning and end
                 BIF_white[i]=BIF_white[i].strip()
                 i+=1
-        #print BIF_white
         return BIF_white
 
     @staticmethod
@@ -39,7 +36,7 @@ class parser:
                 while BIF[i]!='}':
                     lineList = BIF[i].split()
                     if lineList[0] == 'type':
-                        #Parse the variable type - will be discrete in most cases
+
                         theType = lineList[1]
 
                         #Parse the number of states
@@ -58,11 +55,8 @@ class parser:
                         theProperty=" ".join(lineList[1:])
                     i+=1
                 #Append the new node to the list of nodes
-                #THIS IS WHERE YOU MUST CHANGE THE INSTANTIATION OF A NODE IF YOU CHANGE THE CONSTRUCTOR IN THE NODE CLASS
                 nodes.append(Node.Node(name,theType,numStates,theStates, theProperty))
             elif lineList[0] == 'probability':
-                #If this is declaration is a probability distribution
-
                 #Add spaces before and after parentheses
                 BIF[i]=re.sub('([()])', r' \1 ', BIF[i])
 
@@ -96,7 +90,6 @@ class parser:
                         del lineList[0]
 
                         #Get rid of commas and semicolons
-                        #prob = [x.translate(None, ",;") for x in lineList]
                         prob = [x.translate(str.maketrans('','', "(,;)")) for x in lineList]
 
                         #Store the distribution (this is a marginal distribution)
@@ -104,17 +97,16 @@ class parser:
 
                     elif lineList[0][0] == "(":
                         #Remove all punctuation from the evidence names and the probability values
-                        #lineList = [states.translate(None,"(,;)") for states in lineList]
                         lineList = [states.translate(str.maketrans('','', "(,;)")) for states in lineList]
 
                         #In the CPD dictionary key, the states of the node are stored first. The second tuple is that of the parent values
                         theCPD[(temp.getStates(), tuple(lineList[:temp.numParents()]))] = tuple([float(h) for h in lineList[temp.numParents():]])                    
                     i+=1
-                #print theCPD
                 temp.setDist(theCPD)
             else:
                 i=i+1
         return nodes
+
     @staticmethod
     def printNodes(nodes):
         for a in nodes:
@@ -128,11 +120,3 @@ class parser:
             for c in a.children:
                 print(c.getName())
             print("")
-
-    '''def printFactors(factors):
-        for a in factors:
-            print a.get'''
-
-    #BIF = fixWhiteSpace(BIF)
-    #nodes = parseBIF(BIF)
-    #printNodes(nodes)
