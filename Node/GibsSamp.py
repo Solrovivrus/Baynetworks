@@ -31,7 +31,7 @@ def makeSample(x, initialState, network):
         childValues = list(network[child]["CPD"].values())
     print(child)
     for i in network.values():
-        dist[i] = initialState[x] * parentValues + childValues
+        dist[i] = initialState[x] * parentValues * childValues
     return dist
 
 
